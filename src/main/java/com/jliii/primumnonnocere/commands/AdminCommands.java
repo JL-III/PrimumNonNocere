@@ -21,38 +21,48 @@ public class AdminCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
         if (!(sender instanceof Player player)) {
             Bukkit.getLogger().info("Only players can use this command.");
             return true;
         }
 
-        if (player.hasPermission("softmute.admin")) {
-            if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("reload")) {
-                    configManager.reloadConfig();
-                    player.sendMessage("Reloading config...");
-                }
-                if (args[0].equalsIgnoreCase("save")) {
-                    configManager.saveConfig();
-                    player.sendMessage("Saving config...");
-                    player.sendMessage(ChatColor.GREEN + "Players currently soft muted:");
-                    configManager.getSoftMutedPlayers().forEach(player::sendMessage);
+        if (args.length == 1) {
+            if (player.hasPermission("softmute.admin")) {
+                String action = args[0].toLowerCase();
+                switch (action) {
+                    case "reload" -> {
+                        configManager.reloadConfig();
+                        player.sendMessage("Reloading config...");
+                    }
+                    case "save" -> {
+                        configManager.saveConfig();
+                        player.sendMessage("Saving config...");
+                        player.sendMessage(ChatColor.GREEN + "Players currently soft muted:");
+                        configManager.getSoftMutedPlayers().forEach(player::sendMessage);
+                    }
+                    case "list" -> {
+                        player.sendMessage(ChatColor.GREEN + "Players currently soft muted:");
+                        configManager.getSoftMutedPlayers().forEach(player::sendMessage);
+                    }
+                    case "ns" -> configManager.addOverNightSoftMutedPlayers();
+                    case "rs" -> configManager.resetSoftMutedPlayers();
                 }
             }
+            return true;
         }
-        if (player.hasPermission("softmute.others")) {
-            if (args.length == 2 && args[0].equalsIgnoreCase("softmute")) {
-                String playerName = args[1].toLowerCase();
-                List<String> softMutedPlayers = configManager.getSoftMutedPlayers();
 
-                if (!softMutedPlayers.contains(playerName)) {
-                    softMutedPlayers.add(playerName);
-                    player.sendMessage("Soft muted " + args[1]);
-                } else {
-                    softMutedPlayers.remove(playerName);
-                    player.sendMessage("Un-soft muted " + args[1]);
-                }
+
+
+        if (player.hasPermission("softmute.others") && args.length == 2 && args[0].equals("toggle")) {
+            String playerName = args[1].toLowerCase();
+            List<String> softMutedPlayers = configManager.getSoftMutedPlayers();
+
+            if (!softMutedPlayers.contains(playerName)) {
+                softMutedPlayers.add(playerName);
+                player.sendMessage("Soft muted " + args[1]);
+            } else {
+                softMutedPlayers.remove(playerName);
+                player.sendMessage("Un-soft muted " + args[1]);
             }
         }
 

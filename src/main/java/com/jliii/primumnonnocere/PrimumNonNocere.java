@@ -22,7 +22,7 @@ public final class PrimumNonNocere extends JavaPlugin {
             GeneralUtils.pluginLogger(ChatColor.GREEN, "VentureChat found! Enabling Listener.");
             Bukkit.getPluginManager().registerEvents(new VentureChatListener(configManager), this);
             Objects.requireNonNull(Bukkit.getPluginCommand("softmute")).setExecutor(new AdminCommands(configManager));
-            new DataSyncTask(configManager).runTaskTimer(this, 0, 20 * 60 * 5);
+            new DataSyncTask(configManager).runTaskTimer(this, 0, 20 * 60 * 5); // 5 minutes
         } else {
             GeneralUtils.pluginLogger(ChatColor.RED, "VentureChat not found! Chat Listener will not work.");
             GeneralUtils.pluginLogger("Disabling plugin.");
