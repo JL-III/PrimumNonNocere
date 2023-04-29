@@ -32,6 +32,15 @@ public class VentureChatListener implements Listener {
                 }
             }
             event.getRecipients().add(player);
+        } else if (configManager.containsBlacklistedWords(event.getChat(), configManager.getBlackListedWords(), 1)) {
+            event.getRecipients().clear();
+            for (Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+                if (onlinePlayer.hasPermission("theatriachat.softmute.listen") && !onlinePlayer.equals(player)) {
+                    String blacklistMessage = ChatColor.RED + "|||" + ChatColor.RESET + event.getFormat() + ChatColor.GRAY + event.getChat();
+                    onlinePlayer.sendMessage(blacklistMessage);
+                }
+            }
+            event.getRecipients().add(player);
         }
     }
 }

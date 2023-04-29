@@ -28,7 +28,6 @@ public final class PrimumNonNocere extends JavaPlugin {
             GeneralUtils.pluginLogger("Disabling plugin.");
             Bukkit.getPluginManager().disablePlugin(this);
         }
-
     }
 
     @Override

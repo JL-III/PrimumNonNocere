@@ -5,3 +5,9 @@ soft-muted-players:
 # They will normally be able to talk unless they are actively softmuted
 overnight-soft-mutes:
   - 'chobanifreedom'
+
+# Blacklisted words that will autosoftmute a single message
+blacklisted-words:
+  - notch
+  - mojang
+  - microsoft
