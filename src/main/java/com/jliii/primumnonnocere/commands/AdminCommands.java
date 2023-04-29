@@ -27,7 +27,7 @@ public class AdminCommands implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("theatriachat.admin")) {
+        if (player.hasPermission("softmute.admin")) {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     configManager.reloadConfig();
@@ -41,7 +41,7 @@ public class AdminCommands implements CommandExecutor {
                 }
             }
         }
-        if (player.hasPermission("theatriachat.softmute.others")) {
+        if (player.hasPermission("softmute.others")) {
             if (args.length == 2 && args[0].equalsIgnoreCase("softmute")) {
                 String playerName = args[1].toLowerCase();
                 List<String> softMutedPlayers = configManager.getSoftMutedPlayers();

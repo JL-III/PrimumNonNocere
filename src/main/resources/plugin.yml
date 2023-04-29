@@ -3,7 +3,7 @@ version: '${project.version}'
 main: com.jliii.primumnonnocere.PrimumNonNocere
 api-version: 1.19
 commands:
-  tchat:
+  softmute:
     description: TheatriaChat command
-    usage: /<command>
-    aliases: [tc]
+    usage: /softmute <player>
+    aliases: [sm]

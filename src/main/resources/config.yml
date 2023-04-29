@@ -1,2 +1,7 @@
+# Soft muted players
 soft-muted-players:
+  - 'chobanifreedom'
+# These players get muted overnight since they tend to misbehave when staff is inactive
+# They will normally be able to talk unless they are actively softmuted
+overnight-soft-mutes:
   - 'chobanifreedom'

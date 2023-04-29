@@ -4,9 +4,9 @@ import com.jliii.primumnonnocere.commands.AdminCommands;
 import com.jliii.primumnonnocere.listeners.VentureChatListener;
 import com.jliii.primumnonnocere.managers.ConfigManager;
 import com.jliii.primumnonnocere.tasks.DataSyncTask;
-import com.jliii.primumnonnocere.tasks.OverNightTask;
 import com.jliii.primumnonnocere.utils.GeneralUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -19,16 +19,16 @@ public final class PrimumNonNocere extends JavaPlugin {
         ConfigManager configManager = new ConfigManager(this);
 
         if (Bukkit.getPluginManager().getPlugin("VentureChat") != null) {
-            GeneralUtils.pluginLogger("VentureChat found! Enabling Listener.");
+            GeneralUtils.pluginLogger(ChatColor.GREEN, "VentureChat found! Enabling Listener.");
             Bukkit.getPluginManager().registerEvents(new VentureChatListener(configManager), this);
-            return;
+            Objects.requireNonNull(Bukkit.getPluginCommand("softmute")).setExecutor(new AdminCommands(configManager));
+            new DataSyncTask(configManager).runTaskTimer(this, 0, 20 * 60 * 5);
         } else {
-            GeneralUtils.pluginLogger("VentureChat not found! Chat Listener will not work.");
+            GeneralUtils.pluginLogger(ChatColor.RED, "VentureChat not found! Chat Listener will not work.");
+            GeneralUtils.pluginLogger("Disabling plugin.");
+            Bukkit.getPluginManager().disablePlugin(this);
         }
 
-        Objects.requireNonNull(Bukkit.getPluginCommand("tchat")).setExecutor(new AdminCommands(configManager));
-        new OverNightTask(configManager).runTaskTimer(this, 0, 20 * 60 * 60 * 24);
-        new DataSyncTask(configManager).runTaskTimer(this, 0, 20 * 60 * 5);
     }
 
     @Override
