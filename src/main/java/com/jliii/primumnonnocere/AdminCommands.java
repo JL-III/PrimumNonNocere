@@ -26,7 +26,7 @@ public class AdminCommands implements CommandExecutor {
             return true;
         }
 
-        if (player.hasPermission("theatria-chat.admin")) {
+        if (player.hasPermission("theatriachat.admin")) {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     configManager.reloadConfig();
