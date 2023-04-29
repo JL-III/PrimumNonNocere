@@ -2,7 +2,6 @@ name: PrimumNonNocere
 version: '${project.version}'
 main: com.jliii.primumnonnocere.PrimumNonNocere
 api-version: 1.19
-depend: [VentureChat]
 commands:
   tchat:
     description: TheatriaChat command

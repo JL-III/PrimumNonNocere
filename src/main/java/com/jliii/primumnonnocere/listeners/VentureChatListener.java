@@ -1,5 +1,6 @@
-package com.jliii.primumnonnocere;
+package com.jliii.primumnonnocere.listeners;
 
+import com.jliii.primumnonnocere.managers.ConfigManager;
 import mineverse.Aust1n46.chat.api.events.VentureChatEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,11 +11,11 @@ import org.bukkit.event.Listener;
 
 import java.util.List;
 
-public class ChatListener implements Listener {
+public class VentureChatListener implements Listener {
 
     private final ConfigManager configManager;
 
-    public ChatListener(ConfigManager configManager) {
+    public VentureChatListener(ConfigManager configManager) {
         this.configManager = configManager;
     }
 

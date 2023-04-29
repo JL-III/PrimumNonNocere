@@ -1,5 +1,6 @@
-package com.jliii.primumnonnocere;
+package com.jliii.primumnonnocere.managers;
 
+import com.jliii.primumnonnocere.PrimumNonNocere;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;

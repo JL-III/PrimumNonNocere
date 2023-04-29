@@ -1,5 +1,6 @@
-package com.jliii.primumnonnocere;
+package com.jliii.primumnonnocere.commands;
 
+import com.jliii.primumnonnocere.managers.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -39,6 +40,8 @@ public class AdminCommands implements CommandExecutor {
                     configManager.getSoftMutedPlayers().forEach(player::sendMessage);
                 }
             }
+        }
+        if (player.hasPermission("theatriachat.softmute.others")) {
             if (args.length == 2 && args[0].equalsIgnoreCase("softmute")) {
                 String playerName = args[1].toLowerCase();
                 List<String> softMutedPlayers = configManager.getSoftMutedPlayers();
